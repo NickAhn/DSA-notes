@@ -167,8 +167,11 @@ Go:
 ```
 ```
 
+([Back to top](#table-of-contents))
 
 ## Doubly Linked List
+
+([Back to top](#table-of-contents))
 
 # Stack
 
