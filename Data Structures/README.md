@@ -51,6 +51,8 @@ Linked List is a linear data structure in which elements are not stored at conti
 
 Items in a linked list are called **nodes**, the first node being the **head** and the last node being the **tail**.
 
+Analogy: linked lists are like a chain of paper clips. 
+
 ### Strengths
 * **Dynamic Size**: You can increase/decrease the size of the array during runtime.
 * **Faster insertion/deletion operations**: To insert/delete, you don't need to shift elements. Only change the pointer from one node to another. 
@@ -62,111 +64,23 @@ Adding/removing elements in the head or tail takes O(1) time.
 * **Costly look-ups**: *Random access* is not possible due to its dynamic memory allocation. To access the ith element, you need to traverse the array from the head, taking O(i) time.
 * **Memory usage**: More memory is required in a linked list compared to an array. A pointer not only store the address of another node, but it also requires extra memory for itself.
 
-Analogy: linked lists are like a chain of paper clips. 
+### Uses
+* When you need fast insertion/deletion of elements in a list
+* When lookups and ordering is not extremely important
+* The decision between arrays and linked lists comes down to the insertion/deletion cost, search cost (and space cost, if comparing to a static array).
+
 
 ## Singly Linked List
 Singly Linked Lists only have one pointer linking one node to another. Therefore, items can only be navigated forward.
 ![Singly Linked List](imgs/singly-linked-list.png)
+
 ### Implementation
-Python:
-```
-class Node:
-    def __init__(self, val=None) -> None:
-        self.val = val
-        self.next = None
 
-class LinkedList:
-    def __init__(self) -> None:
-            self.head = self.tail = None
-    
-    def append(self, val) -> Node:
-        newNode = Node(val)
-        if not self.head:
-            self.head = self.tail = newNode
-        else:
-            self.tail.next = newNode
-            self.tail = newNode 
-    
-    # Prepend node to list and return new head
-    def prepend(self, val) -> Node:
-        if self.head is None:
-            self.head = self.tail = Node(val)
-        else:
-            temp = Node(val)
-            temp.next = self.head
-            self.head = temp
-        return self.head
+<<<<<<< HEAD
+=======
+[``` singly-linked-list.py ```](https://github.com/NickAhn/DSA-notes/blob/main/Data%20Structures/singly-linked-list.py)
 
-    def insert(self, val, index) -> bool:
-        if index > len(self):
-            return False
-
-        newNode = Node(val)
-        i = 0
-        prev = None
-        cur = self.head
-        while i < index:
-            i+=1
-            prev = cur
-            cur = cur.next
-        
-        prev.next = newNode
-        prev.next.next = cur
-        return True
-        
-    def delete(self, val) -> Node:
-        prev = None
-        cur = self.head
-        found = False
-        while cur and not found:
-            if cur.val == val:
-                found = True
-            else:
-                prev = cur
-                cur = cur.next
-        
-        if not found:
-            return None
-        # If previous is none, node to be deleted is head
-        if prev is None:
-            self.head = cur.next
-        else:
-            prev.next = cur.next
-
-        return cur
-
-    # If search is sucessful, return index position. Otherwise, None
-    def search(self, val) -> int:
-        index = 0
-        cur = self.head
-        while cur:
-            if cur.val == val:
-                return index
-            index += 1
-            cur = cur.next
-        
-        return -1
-
-    def __str__(self) -> str:
-        toString = ""
-        cur = self.head
-        while cur:
-            toString += str(cur.val) + " "
-            cur = cur.next
-        return toString
-
-    def __len__(self) -> int:
-        cur = self.head
-        length = 0
-        while cur:
-            cur = cur.next
-            length += 1
-        return length
-```
-Go:
-```
-```
-
+>>>>>>> 3510593b7338dce14ed79bc2781a5c3b2ecf0911
 ([Back to top](#table-of-contents))
 
 ## Doubly Linked List
@@ -174,6 +88,41 @@ Go:
 ([Back to top](#table-of-contents))
 
 # Stack
+Stack is a data structure that stores items in a First-in, last-out (FILO) order. As the name implies, you can imagine that you are stacking items in a container, and you can only add or remove items from the top of the stack.
+
+![stack](imgs/stack.png)
+
+Its main opeartions are:
+* pop() - remove top of stack (last element)
+* push() - add element to stack
+* peek() - see top element of stack
+
+## Analysis
+### Space and Time complexities 
+|             |  Worst Case |
+| ----------- | ----------- |
+| space       |   O(n)     |
+| push        |   O(1)      |
+| pop         |   O(1)      |
+| peek        |   O(1)      |
+## Strenghts
+* Fast operations
+
+## Weaknesses
+* Random Accessing is not possible
+
+## Use Cases
+* Helps you manage data in a more particular way than arrays and lists.
+* Good for when **LIFO** principle is needed (ex: *DFS*)
+
+## Implementation
+You can implement stacks with both dynamic arrays or linked lists.
+|           |   Push |  Pop      |
+| --------- | --------- | --------|
+| Linked Lists   | Insert at head | remove at head      |
+| Dynamic Arrays | append         | remove last element |
+
+([Back to top](#table-of-contents))
 
 # Queue
 
